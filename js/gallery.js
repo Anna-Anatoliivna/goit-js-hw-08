@@ -87,3 +87,8 @@ function selectImg(event) {
     const selectedImg = event.target.dataset.source;
     console.log(selectedImg);
 };
+
+function showModal() {
+   body.classList.add('show-modal')
+    
+}
