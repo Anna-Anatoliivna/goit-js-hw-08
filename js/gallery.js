@@ -64,13 +64,18 @@ const images = [
   },
 ];
 
+// оголошення глобальних змінних
 
 const ulElem = document.querySelector('.gallery');
 const backdropEl = document.querySelector('.backdrop');
 const modalEl = document.querySelector('.modal');
+
+
+// створення розмітки для галереї зображень 
+
 function imageTamplate(image) {
     return `<li class="gallery-item">
-            <a class="gallery-link" href="large-image.jpg">
+            <a class="gallery-link" href=${image.original}>
                 <img class="gallery-image" src=${image.preview} data-source=${image.original}
                     alt=${image.description} />
             </a>
@@ -83,28 +88,56 @@ function imagesTamplate(arr) {
 const markup = imagesTamplate(images);
 ulElem.innerHTML = markup;
 
-ulElem.addEventListener("click", selectImg);
-function selectImg(event) {
-    console.log(event.target);
-    const selectedImg = event.target.dataset.source;
-    console.log(selectedImg);
-};
+// заборона на завантаження зображення на ПК по кліку
+const imgLinkEl =  document.querySelectorAll('.gallery-link');
+imgLinkEl.forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+    });  
+});
+
+
+// делігація - виклик картинки по кліку на превью
+
+// ulElem.addEventListener("click", selectImg);
+// function selectImg(event) {
+//     console.log(event.target);
+//     const selectedImg = event.target.dataset.source;
+//     console.log(selectedImg);
+// };
+
+// відкриття модалки по кліку на картинку
 
 function showModal() {
-   document.body.classList.add('show-modal')
+    backdropEl.classList.add('show-modal');
+    window.addEventListener('keydown', onModalClose);
 }
+
+// закриття модалки кліком за межами картинки
+
     function closeModal() {
-   document.body.classList.remove('show-modal')
+        backdropEl.classList.remove('show-modal')
+        window.removeEventListener('keydown', onModalClose);
 }
-    
+//   перевірка, щоб модалка не відкривалася при натисканні між превьюшками  
+
 ulElem.addEventListener('click', e => {
     if (e.target === e.currentTarget) return;
     showModal();
 });
 
+//   перевірка, щоб модалка не закривалася при натисканні в межах модального вікна  
 backdropEl.addEventListener('click', e => {
     if (e.target === e.currentTarget) {
         closeModal();
-    };
-       
+    };       
 })
+
+// закриття модалки через ESC
+
+function onModalClose(e) {
+    console.log(e.code);
+    if (e.code === 'Escape'){
+        closeModal();
+    }
+};

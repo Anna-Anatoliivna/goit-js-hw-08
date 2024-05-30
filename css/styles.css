@@ -21,7 +21,6 @@ body {
 }
 .container {
   max-width: 1128px;
-  margin: 0 auto;
   margin: 24px 156px;
 }
 .gallery {
@@ -62,9 +61,10 @@ body {
   left: 50%;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
   transform: translate(-50%, -50%);
+  background-color: #fcfcfc;
 }
 
-body.show-modal.backdrop {
+.show-modal {
   opacity: 1;
   visibility: visible;
   pointer-events: initial;
