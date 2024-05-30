@@ -9,15 +9,19 @@
 </head>
 
 <body>
-    <ul class="gallery">
-        <li class="gallery-item">
-            <a class="gallery-link" href="large-image.jpg">
-                <img class="gallery-image" src="small-image.jpg" data-source="large-image.jpg"
-                    alt="Image description" />
-            </a>
-        </li>
-
-    </ul>
+    <div class="container">
+        <ul class="gallery">
+            <li class="gallery-item">
+                <a class="gallery-link" href="large-image.jpg">
+                    <img class="gallery-image" data-source="large-image.jpg" src="small-image.jpg"
+                        alt="Image description">
+                </a>
+            </li>
+        </ul>
+        <div class="backdrop">
+            <div class="modal"></div>
+        </div>
+    </div>
 
     <script src="./js/gallery.js" type="module"></script>
 

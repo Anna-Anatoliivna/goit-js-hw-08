@@ -66,6 +66,8 @@ const images = [
 
 
 const ulElem = document.querySelector('.gallery');
+const backdropEl = document.querySelector('.backdrop');
+const modalEl = document.querySelector('.modal');
 function imageTamplate(image) {
     return `<li class="gallery-item">
             <a class="gallery-link" href="large-image.jpg">
@@ -89,6 +91,20 @@ function selectImg(event) {
 };
 
 function showModal() {
-   body.classList.add('show-modal')
-    
+   document.body.classList.add('show-modal')
 }
+    function closeModal() {
+   document.body.classList.remove('show-modal')
+}
+    
+ulElem.addEventListener('click', e => {
+    if (e.target === e.currentTarget) return;
+    showModal();
+});
+
+backdropEl.addEventListener('click', e => {
+    if (e.target === e.currentTarget) {
+        closeModal();
+    };
+       
+})
