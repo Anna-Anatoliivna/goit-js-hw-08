@@ -71,7 +71,7 @@ const backdropEl = document.querySelector('.backdrop');
 const modalEl = document.querySelector('.modal');
 
 
-// створення розмітки для галереї зображень 
+// відрендерення та створення розмітки для галереї зображень 
 
 function imageTamplate(image) {
     return `<li class="gallery-item">
@@ -108,36 +108,50 @@ imgLinkEl.forEach(link => {
 
 // відкриття модалки по кліку на картинку
 
-function showModal() {
-    backdropEl.classList.add('show-modal');
-    window.addEventListener('keydown', onModalClose);
-}
+// function showModal() {
+//     backdropEl.classList.add('show-modal');
+//     window.addEventListener('keydown', onModalClose);
+// }
 
-// закриття модалки кліком за межами картинки
+// // закриття модалки кліком за межами картинки
 
-    function closeModal() {
-        backdropEl.classList.remove('show-modal')
-        window.removeEventListener('keydown', onModalClose);
-}
-//   перевірка, щоб модалка не відкривалася при натисканні між превьюшками  
+//     function closeModal() {
+//         backdropEl.classList.remove('show-modal')
+//         window.removeEventListener('keydown', onModalClose);
+// }
+// //   перевірка, щоб модалка не відкривалася при натисканні між превьюшками  
 
-ulElem.addEventListener('click', e => {
-    if (e.target === e.currentTarget) return;
-    showModal();
-});
+// ulElem.addEventListener('click', e => {
+//     if (e.target === e.currentTarget) return;
+//     showModal();
+// });
 
-//   перевірка, щоб модалка не закривалася при натисканні в межах модального вікна  
-backdropEl.addEventListener('click', e => {
-    if (e.target === e.currentTarget) {
-        closeModal();
-    };       
-})
+// //   перевірка, щоб модалка не закривалася при натисканні в межах модального вікна  
+// backdropEl.addEventListener('click', e => {
+//     if (e.target === e.currentTarget) {
+//         closeModal();
+//     };       
+// })
 
-// закриття модалки через ESC
+// // закриття модалки через ESC
 
-function onModalClose(e) {
-    console.log(e.code);
-    if (e.code === 'Escape'){
-        closeModal();
-    }
-};
+// function onModalClose(e) {
+//     console.log(e.code);
+//     if (e.code === 'Escape'){
+//         closeModal();
+//     }
+// };
+
+// модалка через бібліотеку
+
+const instance = basicLightbox.create(`
+    <div class="modal">
+        <p>
+            Your first lightbox with just a few lines of code.
+            Yes, it's really that simple.
+        </p>
+    </div>
+`)
+
+// instance.show()
+// instance.close()
